@@ -1,0 +1,52 @@
+{
+
+    "manifest_version": 3,
+    "name": "PTdetector-Version",
+    "short_name": "PTV",
+    "version": "1.0",
+  
+    "description": "Detect JavaScript libraries used on the current web page.",
+  
+    "icons": {
+      "48": "icons/border-48.png"
+    },
+    "permissions": [
+      "tabs"
+    ],
+    "host_permissions": [
+      "*://*/*"
+    ],
+    "background": {
+      "service_worker": "background.js"
+    },
+    "commands": {
+      "run-detect": {
+        "suggested_key": {
+          "default": "Ctrl+Shift+Y",
+          "mac": "Command+Shift+Y"
+        },
+        "description": "Start detection on the current page."
+      }
+    },
+  
+    "action": {
+      "default_icon": "icons/border-48.png",
+      "default_title": "LibDetector",
+      "default_popup": "popup/DtrMenu.html"
+    },
+    "content_scripts": [
+      {
+          "matches": ["http://*/*", "https://*/*"],
+          "js": ["content_scripts/inject.js"],
+          "run_at": "document_idle",
+          "all_frames": false
+      }
+    ],
+    "web_accessible_resources": [{
+        "resources": ["data/*.json", "data/versions/*.json", "content_scripts/detect.js"],
+        "matches": ["http://*/*", "https://*/*"]
+      }
+    ]
+  
+  }
+  

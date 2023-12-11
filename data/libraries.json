@@ -1,0 +1,14 @@
+[{
+    "libname": "core-js",
+    "url": "https://cdnjs.com/libraries/core-js",
+    "function": "test_corejs",
+    "versionfile": "core-js.json",
+    "feature1": [["core", "locale"], ["core", "addLocale"]],
+    "feature2": [["__core-js_shared__", "wks"], ["__core-js_shared__", "symbols"]]
+},
+{
+    "libname": "backbone.js",
+    "url": "https://cdnjs.com/libraries/backbone.js",
+    "function": "test_backbonejs",
+    "feature1": [["Backbone", "sync"], ["Backbone", "View"]]
+}]
