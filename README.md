@@ -1,10 +1,14 @@
-### PTdetector
+### PTdetector-Version
 
 
 
 #### What is this?
 
-PTdetector is a Chrome extension which can detect all JavaScript libraries runs behind the web. LibDetector collects over 4,000 libraries information from [cdnjs](https://cdnjs.com/). The library detection ability has academic research support. More information please refer to the ASE 2023 paper [PTdetector: An Automated JavaScript Front-end Library Detector](https://www.researchgate.net/publication/373638073_PTDETECTOR_An_Automated_JavaScript_Front-end_Library_Detector).
+PTdetector-Version (PTV) is a Chrome extension which can detect all JavaScript libraries runs behind the web and examine their versions. PTV collects over 6,000 libraries information from [cdnjs](https://cdnjs.com/). The library detection ability has academic research support. More information please refer to the ASE 2023 paper [PTdetector: An Automated JavaScript Front-end Library Detector](https://www.researchgate.net/publication/373638073_PTDETECTOR_An_Automated_JavaScript_Front-end_Library_Detector).
+
+#### How does it work?
+
+PTV applies pTree-based detection during the browser runtime. We collect pTree information for each library in advance and extract their valuable detection feature. The feature generation process is compeleted in [PTV-gen](https://github.com/aaronxyliu/PTV-gen).
 
 #### How to use?
 
