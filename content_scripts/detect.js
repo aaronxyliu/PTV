@@ -290,6 +290,18 @@
             }
 
         }
+
+        convertToJson() {
+            const json_output = []
+            for (let lib of this.libs) {
+                json_output.push({
+                    libname: this.libInfoList[lib.index]['libname'],
+                    url: this.libInfoList[lib.index]['url'],
+                    version: lib.version
+                })
+            }
+            return json_output
+        }
     }
 
     /**
@@ -307,75 +319,16 @@
             // Find all keywords in the web object tree
             let L = new Libraries(libInfoList)
             L.findLibs(blacklist)
-            L.checkVersion(baseurl)
+            await L.checkVersion(baseurl)
 
             console.log(L.libs)
 
-            window.postMessage({type: 'response', detected_libs: L.libs}, "*")
-
-
-
-            // let requests = event.data.urls.map((url) => {
-            //     return fetch(url).then((response) => {
-            //         return response.json()})
-            // });
-            // Promise.all(requests)
-            //     .then((results) => {
-            //         let blacklist = results[0]
-            //         let pts = results[1]
-            //         let file_list = results[2]
-
-            //         // Used to calculate spending time
-            //         let start_time = Date.now()
-
-            //         // Find all keywords in the web object tree
-            //         let keyword_list = findKeywords(pts, blacklist, 3)
-            //         // console.log(keyword_list);
-
-            //         // Calculate the credit for each library
-            //         let match_records = []
-            //         for (let keyword of keyword_list) {
-            //             let v_base = keyword[0]
-            //             let v_name = keyword[1]
-
-            //             let pt = pts[v_name]
-            //             let match_record = matchPTree(pt, `${v_base}["${v_name}"]`)
-            //             match_records.push([match_record, v_base, v_name])
-            //         }
-
-            //         // Classify match_record based on lib name
-            //         lib_match_list = classifyLib(match_records, file_list)
-            //         score_list = calScore(lib_match_list)
-
-            //         let end_time = Date.now()
-
-            //         // Sort the result based on credit score
-            //         sortScore(score_list)
-            //         console.log('All detected lib:')
-            //         console.log(score_list)
-
-            //         console.log('Filtered (#matched > 1):')
-            //         score_list = filterList(score_list)
-            //         console.log(score_list)
-
-            //         window.postMessage({type: 'response', detected_libs: score_list}, "*")
-
-            //         // Only used for Selenium automation
-            //         var detectTimeMeta = document.getElementById('lib-detect-time')
-            //         detectTimeMeta.setAttribute("content", end_time - start_time);
-
-            //         var detectResultMeta = document.getElementById('lib-detect-result')
-            //         detectResultMeta.setAttribute("content", ResultToString(score_list));
-
-            //    })
-
+            this.window.postMessage({type: 'response', detected_libs: L.convertToJson()}, "*")
         }
-
     });
 
     class VersionDetermine {
         constructor() {
-
         }
 
         test_corejs(root) {

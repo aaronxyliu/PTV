@@ -38,7 +38,7 @@ button[type="reset"]:hover {
   align-items: center;
   justify-content: center;
   gap: 1ch;
-  background-color: lightseagreen;
+  background-color: rgb(184, 236, 233);
 }
 .text {
   font-size: 2rem;
