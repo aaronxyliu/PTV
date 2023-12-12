@@ -10,5 +10,6 @@
     "libname": "backbone.js",
     "url": "https://cdnjs.com/libraries/backbone.js",
     "function": "test_backbonejs",
+    "versionfile": "backbone.json",
     "feature1": [["Backbone", "sync"], ["Backbone", "View"]]
 }]

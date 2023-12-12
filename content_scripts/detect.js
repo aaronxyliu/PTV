@@ -139,7 +139,7 @@
                 return true;    // NEED CHANGE TO MD5 CHECK !!
             }
             if (typeof (property) == 'string') {
-                if (_dict['t'] == 4 && _dict['v'] == v.slice(0, 24).replace(/<|>/g, '_')) return true;
+                if (_dict['t'] == 4 && _dict['v'] == property.slice(0, 24).replace(/<|>/g, '_')) return true;
                 else return false;
             }
             if (typeof (property) == 'object') {
@@ -246,7 +246,8 @@
                     lib.version = this.VerDe[v_func](lib.locationPtr())
                 }
 
-                if (lib.version == null || lib.version == 'unknown') {
+                if (lib.version == undefined || lib.version == null || lib.version == 'unknown') {
+                    lib.version = 'unknown'
                     if (libInfo.hasOwnProperty('versionfile')) {
                         // Determine version by pTree comparison
                         const response = await window.fetch(`${baseurl}/versions/${libInfo['versionfile']}`)
@@ -350,7 +351,11 @@
         }
     
         test_backbonejs(root) {
-            return 'unknown'
+            const backbone = root['Backbone']
+            if (backbone == undefined || backbone == null) return 'unknown'
+            const version = backbone['VERSION']
+            if (version == '0.9.9' || version == '1.2.3') return 'unknown'
+            return version
         }
 
     }
