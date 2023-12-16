@@ -618,6 +618,52 @@
         test_scrollmagic(root) {
             return new Version([root.ScrollMagic.version])
         }
+
+        test_seajs (root) {
+            const version = root.seajs.version
+            if (version == "3.0.1") return new Version(["3.0.1", "3.0.2"])
+            return new Version([version])
+        }
+
+        test_socketio (root) {
+            const version = root.io.version
+            if (version == "0.7.9") return new Version(["0.7.9", "0.7.10"])
+            if (version == "0.8.2") return new Version(["0.8.2", "0.8.3"])
+            return new Version([version])
+        }
+
+        test_sugar (root) {
+            if (root.Sugar) return new Version([root.Sugar.VERSION])
+            return new Version([])
+        }
+
+        test_threejs (root) {
+            return new Version([root.THREE.REVISION])
+        }
+
+        test_tweenjs (root) {
+            return new Version([root.TWEEN.REVISION])
+        }
+
+        test_twojs (root) {
+            const version = root.Two.Version
+            if (version == 'v0.7.1') {
+                if (root.Two.PublishDate == '2021-01-13T01:57:28.198Z') return new Version(['v0.7.1'])
+                if (root.Two.PublishDate == '2021-03-26T16:14:37.868Z') return new Version(['v0.7.2', 'v0.7.3'])
+                if (root.Two.PublishDate == '2021-04-02T20:42:48.163Z') return new Version(['v0.7.4'])
+            }
+            if (version == 'v0.8.4') return new Version(['v0.8.4', 'v0.8.5'])
+            return new Version([version])
+        }
+
+        test_underscorejs (root) {
+            return new Version([root._.VERSION])
+        }
+
+        test_velocity (root) {
+            if (root.Velocity) return new Version([root.Velocity.version])
+            return new Version([])
+        }
     }
 })();
 

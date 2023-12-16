@@ -716,7 +716,6 @@
         "libname": "seajs",
         "url": "https://cdnjs.com/libraries/seajs",
         "function": "test_seajs",
-        "versionfile": "seajs.json",
         "feature1": [
             [
                 "seajs",
@@ -735,15 +734,28 @@
         "versionfile": "socketio.json",
         "feature1": [
             [
-                "io"
+                "io",
+                "managers"
+            ],
+            [
+                "io",
+                "protocol"
+            ]
+        ],
+        "feature2": [
+            [
+                "io",
+                "Manager"
+            ],
+            [
+                "io",
+                "Socket"
             ]
         ]
     },
     {
         "libname": "spf",
         "url": "https://cdnjs.com/libraries/spf",
-        "function": "test_spf",
-        "versionfile": "spf.json",
         "feature1": [
             [
                 "spf",
@@ -761,16 +773,42 @@
         "function": "test_sugar",
         "versionfile": "sugar.json",
         "feature1": [
-            []
+            [
+                "English",
+                "modifiers"
+            ],
+            [
+                "English",
+                "months"
+            ]
+        ],
+        "feature2": [
+            [
+                "DateRange",
+                "SugarMethods"
+            ],
+            [
+                "DateRange",
+                "extend"
+            ]
+        ],
+        "feature3": [
+            [
+                "Sugar",
+                "Date"
+            ],
+            [
+                "Sugar",
+                "Number"
+            ]
         ]
     },
     {
         "libname": "three.js",
         "url": "https://cdnjs.com/libraries/three.js",
         "function": "test_threejs",
-        "versionfile": "threejs.json",
         "feature1": [
-            []
+            ["THREE", "REVISION"]
         ]
     },
     {
@@ -793,7 +831,6 @@
         "libname": "two.js",
         "url": "https://cdnjs.com/libraries/two.js",
         "function": "test_twojs",
-        "versionfile": "twojs.json",
         "feature1": [
             [
                 "Two",
@@ -809,7 +846,6 @@
         "libname": "underscore.js",
         "url": "https://cdnjs.com/libraries/underscore.js",
         "function": "test_underscorejs",
-        "versionfile": "underscorejs.json",
         "feature1": [
             [
                 "_",
@@ -817,7 +853,7 @@
             ],
             [
                 "_",
-                "map"
+                "VERSION"
             ]
         ]
     },
@@ -827,13 +863,22 @@
         "function": "test_velocity",
         "versionfile": "velocity.json",
         "feature1": [
-            []
+            ["jQuery", "fn", "velocity"], ["$", "fn", "velocity"]
+        ],
+        "feature2": [
+            [
+                "Velocity",
+                "defaults"
+            ],
+            [
+                "Velocity",
+                "State"
+            ]
         ]
     },
     {
         "libname": "visibility.js",
         "url": "https://cdnjs.com/libraries/visibility.js",
-        "function": "test_visibilityjs",
         "versionfile": "visibilityjs.json",
         "feature1": [
             [
@@ -849,7 +894,6 @@
     {
         "libname": "webfont",
         "url": "https://cdnjs.com/libraries/webfont",
-        "function": "test_webfont",
         "versionfile": "webfont.json",
         "feature1": [
             [
@@ -861,7 +905,6 @@
     {
         "libname": "yepnope",
         "url": "https://cdnjs.com/libraries/yepnope",
-        "function": "test_yepnope",
         "versionfile": "yepnope.json",
         "feature1": [
             [
@@ -877,7 +920,6 @@
     {
         "libname": "yui",
         "url": "https://cdnjs.com/libraries/yui",
-        "function": "test_yui",
         "versionfile": "yui.json",
         "feature1": [
             [
@@ -893,7 +935,6 @@
     {
         "libname": "zepto",
         "url": "https://cdnjs.com/libraries/zepto",
-        "function": "test_zepto",
         "versionfile": "zepto.json",
         "feature1": [
             [
