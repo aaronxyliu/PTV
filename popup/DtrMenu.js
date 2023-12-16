@@ -21,10 +21,10 @@ chrome.runtime.onMessage.addListener(
         let show_str = ''
         for (let lib_info of lib_list) {
             show_str += `<a href="${lib_info['url']}">${lib_info['libname']}</a>`
-            show_str += `<div>${lib_info['version']}</a>`
+            show_str += `<div>${lib_info['version']}</div>`
             show_str += '\n'
         }
-        
+
         document.getElementById("result-num").innerHTML = `# Libs: ${lib_num}`
         document.getElementById("result").innerHTML = show_str
       }
