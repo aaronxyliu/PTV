@@ -1,17 +1,20 @@
 {
 
     "manifest_version": 3,
-    "name": "PTdetector-Version",
-    "short_name": "PTV",
+    "name": "Library Detector (Academic Tool)",
+    "short_name": "LD(A)",
     "version": "1.0",
   
-    "description": "Detect JavaScript libraries used on the current web page.",
+    "description": "Detect JavaScript libraries used on the current web page. This tool is supported by academic research.",
   
     "icons": {
-      "48": "icons/border-48.png"
+      "16": "icons/icon16.png",
+      "32": "icons/icon32.png",
+      "48": "icons/icon48.png",
+      "128": "icons/icon128.png"
     },
     "permissions": [
-      "tabs"
+      "activeTab"
     ],
     "host_permissions": [
       "*://*/*"
@@ -30,7 +33,7 @@
     },
   
     "action": {
-      "default_icon": "icons/border-48.png",
+      "default_icon": "icons/icon48.png",
       "default_title": "LibDetector",
       "default_popup": "popup/DtrMenu.html"
     },

@@ -50,7 +50,15 @@
 
             this.path_list.push(attribute_name)
             this.par_ptrs.push(this.ptr)
-            this.ptr = this.ptr[attribute_name]
+            try{
+                this.ptr = this.ptr[attribute_name]
+            }
+            catch{
+                // Uncaught (in promise) DOMException: Failed to read a named property 
+                // 'amplify' from 'Window': Blocked a frame with origin "https://ieeexplore.ieee.org" 
+                // from accessing a cross-origin frame.
+                return false
+            }
             return true
         }
 
@@ -61,7 +69,15 @@
             this.par_ptrs = [...PR.par_ptrs]
             this.path_list.push(attribute_name)
             this.par_ptrs.push(PR.ptr)
-            this.ptr = PR.ptr[attribute_name]
+            try{
+                this.ptr = PR.ptr[attribute_name]
+            }
+            catch{
+                // Uncaught (in promise) DOMException: Failed to read a named property 
+                // 'amplify' from 'Window': Blocked a frame with origin "https://ieeexplore.ieee.org" 
+                // from accessing a cross-origin frame.
+                return false
+            }
             return true
         }
 
