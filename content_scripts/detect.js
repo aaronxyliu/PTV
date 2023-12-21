@@ -116,6 +116,13 @@
             }    
             return [];
         }
+
+        str() {
+            if (this.path_list.length == 0)
+                return 'window'
+            
+            return `window.${this.path_list.join('.')}`    
+        }
         
     }
 
@@ -368,7 +375,8 @@
                 json_output.push({
                     libname: this.libInfoList[lib.index]['libname'],
                     url: this.libInfoList[lib.index]['url'],
-                    version: lib.version.version_string
+                    version: lib.version.version_string,
+                    location: lib.detectLocationRecord.str()
                 })
             }
             return json_output

@@ -12,7 +12,7 @@ LD(AT) applies pTree-based detection during the browser runtime. We collect pTre
 
 #### How to use?
 
-Considering that there is still a lot of room for improvement in this tool, we are not in a hurry to publish it on the chrome web store. Currently this tool can only be used by importing from local file system.
+You can download this tool in the [Chrome Web Store](https://chromewebstore.google.com/detail/library-detector-academic/liedgiagjapaehficeimmjcemnknmdfp). Please give a kind rating if you think it is good to use!
 
 For developers: open the Chrome browser, navigate to the `chrome://extensions/` site, , click the "Load Unpacked" button to load this whole folder. Then, pin it in the browser extensions menu.
 

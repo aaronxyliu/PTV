@@ -2,20 +2,58 @@
 <html>
   <head>
     <meta charset="utf-8" />
+    <script src="bootstrap.bundle.min.js"></script>
+    <link rel="stylesheet" href="bootstrap.min.css">
     <link rel="stylesheet" href="DtrMenu.css" />
   </head>
   
   <body>
-    <div class="center">
-      <div id="popup-content">
-        <button id="dt_btn">Detect</button>
+    <nav class="navbar bg-body-tertiary">
+      <div class="container">
+        <a class="navbar-brand" href="#">
+          <img src="../img/logo.png"  alt="Logo" height="50">
+        </a>
       </div>
-      <div id="result-num"></div>
-      <div id="result"></div>
-      <div id="error-content" class="hidden">
-        <p>Can't detect this web page.</p>
-        <p>Try a different page.</p>
+    </nav>
+
+    
+
+    <div id="btn_block">
+      <button id="dt_btn">Click to Detect</button>
+      <div id="zero_text" class="hidden">No library is detected.</div>
+    </div>
+    
+
+    <div class="accordion" id="LibAccordion">
+      <!-- <div class="accordion-item">
+        <h2 class="accordion-header">
+          <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+            core-js
+          </button>
+        </h2>
+        <div id="collapseOne" class="accordion-collapse collapse show" data-bs-parent="#accordionExample">
+          <div class="accordion-body">
+            <strong>Link: </strong>github.com/zloirock/core-js <hr/>
+            <strong>Version: </strong> 1.2.1  </br>
+            <strong>Location: </strong> window
+          </div>
+        </div>
       </div>
+
+      <div class="accordion-item">
+        <h2 class="accordion-header">
+          <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+            loadsh
+          </button>
+        </h2>
+        <div id="collapseTwo" class="accordion-collapse collapse" data-bs-parent="#accordionExample">
+          <div class="accordion-body">
+            <strong>Link: </strong>lodash.com   </br>
+            <strong>Version: </strong>3.6.1 </br>
+            <strong>Location: </strong> window.wrapper
+          </div>
+        </div>
+      </div> -->
     </div>
     
     <script src="DtrMenu.js"></script>
