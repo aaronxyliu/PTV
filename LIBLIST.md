@@ -4,8 +4,8 @@
 In total, there are 546 libraries collected by the tool. Among them, 398 are equipped with version features.
 
 
-| Library | GitHub Star | Version? | # Versions | Description |
-| ------- | ----------- | -------- | ---------- | ----------- |
+| Library | GitHub Star | Version Detection? | # Versions | Description |
+| ------- | ----------- | -------- | ----------- | ----------- |
 | [bootstrap](entry['url']) | 166.3 k | Y | 27 | The most popular front-end framework for developing responsive, mobile first projects on the web. |
 | [d3](entry['url']) | 106.9 k | Y | 262 | A JavaScript visualization library for HTML and SVG. |
 | axios | 102.9 k | Y | 84 | Promise based HTTP client for the browser and node.js |
