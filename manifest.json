@@ -3,7 +3,7 @@
     "manifest_version": 3,
     "name": "Library Detector (Academic Tool)",
     "short_name": "LD(AT)",
-    "version": "1.1",
+    "version": "1.2",
   
     "description": "Detect JavaScript libraries used on the current web page. This tool is supported by academic software engineering researches.",
   
