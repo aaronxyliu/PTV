@@ -3,6 +3,7 @@
 
 In total, there are 546 libraries collected by the tool. Among them, 398 are equipped with version features.
 
+Data update time: 11.Jan 2024 16:30:41
 
 | Library | GitHub Star | Version Detection? | # Versions | Description |
 | ------- | ----------- | -------- | ---------- | ----------- |
@@ -19,6 +20,7 @@ In total, there are 546 libraries collected by the tool. Among them, 398 are equ
 | [jquery](http://jquery.com/) | 58.2 k | Y | 82 | JavaScript library for DOM operations |
 | [lodash.js](http://lodash.com/) | 58.1 k | Y | 112 | A utility library delivering consistency, customization, performance, & extras. |
 | [echarts](http://echarts.apache.org) | 57.4 k | Y | 112 | A powerful, interactive charting and data visualization library for browser |
+| [element-ui](http://element.eleme.io) | 54.0 k | Y | 164 | A Component Library for Vue.js. |
 | [animejs](http://anime-js.com) | 47.9 k | Y | 14 | Polyvalent Javascript animation engine |
 | [moment.js](http://momentjs.com/) | 47.6 k | Y | 78 | Parse, validate, manipulate, and display dates |
 | prettier | 47.5 k | Y | 57 | Prettier is an opinionated code formatter |
@@ -59,6 +61,7 @@ In total, there are 546 libraries collected by the tool. Among them, 398 are equ
 | [jspdf](http://parall.ax/products/jspdf) | 27.8 k | Y | 34 | PDF Document creation from JavaScript |
 | [uppy](https://uppy.io) | 27.7 k | Y | 123 | Extensible JavaScript file upload widget with support for drag&drop, resumable uploads, previews, restrictions, file processing/encoding, remote providers like Instagram, Dropbox, Google Drive, S3 and more :dog: |
 | [popper.js](https://popper.js.org/) | 27.4 k | Y | 147 | A kickass library to manage your poppers |
+| [underscore.js](http://jashkenas.github.io/underscore/) | 27.2 k | Y | 80 | JavaScript's functional programming helper library. |
 | [fabric.js](http://fabricjs.com/) | 26.5 k | Y | 147 | Object model for HTML5 canvas, and SVG-to-canvas parser. Backed by jsdom and node-canvas. |
 | [codemirror](http://codemirror.net) | 26.4 k | Y | 150 | In-browser code editing made bearable |
 | [nprogress](http://ricostacruz.com/nprogress/) | 25.7 k | Y | 8 | Simple slim progress bars |
@@ -189,6 +192,7 @@ In total, there are 546 libraries collected by the tool. Among them, 398 are equ
 | snabbdom | 11.2 k | N | 33 | A virtual DOM library with focus on simplicity, modularity, powerful features and performance. |
 | [pdfmake](https://bpampuch.github.io/pdfmake) | 11.1 k | N | 83 | Client/server side PDF printing in pure JavaScript |
 | FlexSearch | 11.1 k | N | 14 | Next-Generation full text search library with zero dependencies. |
+| [raphael](http://raphaeljs.com/) | 11.0 k | Y | 30 | JavaScript Vector Library |
 | nlp_compromise | 11.0 k | Y | 67 | natural language processing in the browser |
 | [jquery.isotope](http://isotope.metafizzy.co) | 10.9 k | Y | 15 | Filter and sort magical layouts |
 | [headroom](http://wicky.nillia.ms/headroom.js) | 10.9 k | Y | 17 | Give your page some headroom. Hide your header until you need it |
@@ -206,6 +210,7 @@ In total, there are 546 libraries collected by the tool. Among them, 398 are equ
 | [dexie](http://www.dexie.org) | 10.2 k | Y | 136 | A Minimalistic Wrapper for IndexedDB |
 | [konva](https://konvajs.github.io/) | 10.2 k | Y | 193 | Konva is an HTML5 Canvas JavaScript framework that enables high performance animations, transitions, node nesting, layering, filtering, caching, event handling for desktop and mobile applications, and much more. |
 | trianglify | 10.0 k | N | 31 | Trianglify is a javascript library for generating colorful triangle meshes that can be used as SVG images and CSS backgrounds. |
+| [svg.js](https://svgdotjs.github.io/) | 10.0 k | Y | 110 | A lightweight library for manipulating and animating SVG. |
 | [picturefill](http://scottjehl.github.com/picturefill/) | 9.9 k | Y | 19 | A responsive image polyfill. |
 | acorn | 9.9 k | Y | 131 | ECMAScript parser |
 | [acorn-walk](https://github.com/acornjs/acorn) | 9.9 k | Y | 17 | ECMAScript (ESTree) AST walker |
@@ -221,6 +226,7 @@ In total, there are 546 libraries collected by the tool. Among them, 398 are equ
 | [colors](http://clrs.cc) | 9.3 k | N | 11 | Better default colors for the web. A collection of skin classes for faster prototyping and nicer looking sites. |
 | is_js | 9.2 k | Y | 22 | micro check library |
 | webfont | 9.1 k | Y | 49 | Web Font Loader gives you added control when using linked fonts via @font-face. |
+| [protobufjs](https://github.com/protobufjs/protobuf.js) | 9.0 k | N | 17 | protobuf.js is a pure JavaScript implementation with TypeScript support for node.js and the browser. |
 | gremlins.js | 9.0 k | N |  | A monkey testing library written in JavaScript, for Node.js and the browser. Use it to check the robustness of web applications by unleashing a horde of undisciplined gremlins. |
 | [jshint](http://jshint.com/) | 8.9 k | N | 50 | Static analysis tool for JavaScript |
 | [vue-echarts](https://github.com/ecomfe/vue-echarts#readme) | 8.9 k | N | 59 | ECharts component for Vue.js. |
@@ -277,6 +283,8 @@ In total, there are 546 libraries collected by the tool. Among them, 398 are equ
 | sjcl | 7.1 k | Y | 9 | Stanford Javascript Crypto Library |
 | simple-peer | 7.0 k | Y | 113 | Simple one-to-one WebRTC video/voice and data channels |
 | jss | 7.0 k | Y | 185 | Composable and reusable style sheets. |
+| [metro](http://metroui.org.ua) | 7.0 k | Y | 118 | The front-end framework for developing responsive, mobile projects on the web in Windows Metro Style. |
+| [pace](https://codebyzach.github.io/pace/) | 7.0 k | Y | 46 | Automatically add a progress bar to your site. |
 | [qrcode](http://github.com/soldair/node-qrcode) | 7.0 k | N | 12 | QRCode / 2d Barcode api with both server side and client side support using canvas |
 | [screenfull.js](https://github.com/sindresorhus/screenfull.js) | 6.9 k | Y | 34 | Simple wrapper for cross-browser usage of the JavaScript Fullscreen API |
 | [morris.js](http://morrisjs.github.io/morris.js/) | 6.9 k | N | 20 | Easy, pretty charts |
@@ -427,6 +435,10 @@ In total, there are 546 libraries collected by the tool. Among them, 398 are equ
 | [json-editor](https://github.com/json-editor/json-editor#readme) | 4.0 k | N | 84 | JSON Schema based editor |
 | [react-flip-move](https://joshwcomeau.github.io/react-flip-move/examples) | 4.0 k | N | 90 | Effortless animation between DOM changes (eg. list reordering) using the FLIP technique. |
 | [qunit](https://qunitjs.com/) | 4.0 k | Y | 71 | An easy-to-use JavaScript Unit Testing framework. |
+| [css-element-queries](https://marcj.github.io/css-element-queries/) | 4.0 k | N | 21 | CSS-Element-Queries Polyfill. proof-of-concept for high-speed element dimension/media queries in valid css. |
+| [gifshot](https://yahoo.github.io/gifshot/) | 4.0 k | Y | 7 | JavaScript library that can create animated gifs from video streams (e.g. webcam), existing videos (e.g. mp4), or existing images |
+| [prefixfree](http://leaverou.github.com/prefixfree/) | 4.0 k | N | 2 | A script that lets you use only unprefixed CSS properties everywhere. It works behind the scenes, adding the current browser’s prefix to any CSS code, only when it’s needed. |
+| vizceral | 4.0 k | Y | 74 | Intuitive animated traffic graph using webgl. If a graph of nodes and edges with data about traffic volume is provided, it will render a traffic graph animating the connection volume between nodes. |
 | [kineticjs](http://kineticjs.com/) | 4.0 k | Y | 8 | KineticJS is an HTML5 Canvas JavaScript framework that enables high performance animations, transitions, node nesting, layering, filtering, caching, event handling for desktop and mobile applications, and much more. |
 | [openlocationcode](http://openlocationcode.com/) | 3.9 k | N | 5 | Library to convert between lat/lng and OLC codes |
 | [stacktrace.js](http://stacktracejs.com) | 3.9 k | Y | 21 | Framework-agnostic, micro-library for getting stack traces in all environments |
@@ -509,6 +521,8 @@ In total, there are 546 libraries collected by the tool. Among them, 398 are equ
 | xdomain | 3.1 k | N | 16 | A pure JavaScript CORS alternative |
 | [hyperHtml](https://viperhtml.js.org/hyper.html) | 3.0 k | N | 14 | A Fast & Light Virtual DOM Alternative |
 | bootstrap-calendar | 3.0 k | Y | 9 | Bootstrap full view calendar |
+| stampit | 3.0 k | Y | 43 | Create objects from reusable, composable behaviors. |
+| [vonic](https://wangdahoo.github.io/vonic/docs/) | 3.0 k | N | 72 | Mobile UI Components, based on Vue.js and ionic CSS. |
 | [sammy.js](http://sammyjs.org/) | 3.0 k | Y | 6 | Sammy is a RESTful Evented JavaScript framework built on top of jQuery |
 | [wade](https://github.com/KingPixil/wade#readme) | 3.0 k | Y | 6 | Blazing fast, 1kb search library |
 | [peaks.js](http://waveform.prototyping.bbc.co.uk/) | 3.0 k | N | 86 | Frontend app for displaying audio waveforms |
@@ -538,17 +552,4 @@ In total, there are 546 libraries collected by the tool. Among them, 398 are equ
 | [qooxdoo](http://qooxdoo.org) | 761 | Y |  | Universal JavaScript Framework |
 | bytemd | 154 | N | 19 | Hackable Markdown Editor and Viewer |
 | [chartist](https://gionkunz.github.io/chartist-js) | 58 | Y | 54 | Simple, responsive charts |
-| [css-element-queries](https://marcj.github.io/css-element-queries/) |  | N | 21 | CSS-Element-Queries Polyfill. proof-of-concept for high-speed element dimension/media queries in valid css. |
-| [element-ui](http://element.eleme.io) |  | Y | 164 | A Component Library for Vue.js. |
-| [gifshot](https://yahoo.github.io/gifshot/) |  | Y | 7 | JavaScript library that can create animated gifs from video streams (e.g. webcam), existing videos (e.g. mp4), or existing images |
-| [metro](http://metroui.org.ua) |  | Y | 118 | The front-end framework for developing responsive, mobile projects on the web in Windows Metro Style. |
-| [pace](https://codebyzach.github.io/pace/) |  | Y | 46 | Automatically add a progress bar to your site. |
-| [prefixfree](http://leaverou.github.com/prefixfree/) |  | N | 2 | A script that lets you use only unprefixed CSS properties everywhere. It works behind the scenes, adding the current browser’s prefix to any CSS code, only when it’s needed. |
-| [protobufjs](https://github.com/protobufjs/protobuf.js) |  | N | 17 | protobuf.js is a pure JavaScript implementation with TypeScript support for node.js and the browser. |
-| stampit |  | Y | 43 | Create objects from reusable, composable behaviors. |
-| [svg.js](https://svgdotjs.github.io/) |  | Y | 110 | A lightweight library for manipulating and animating SVG. |
-| vizceral |  | Y | 74 | Intuitive animated traffic graph using webgl. If a graph of nodes and edges with data about traffic volume is provided, it will render a traffic graph animating the connection volume between nodes. |
-| [vonic](https://wangdahoo.github.io/vonic/docs/) |  | N | 72 | Mobile UI Components, based on Vue.js and ionic CSS. |
 | [extjs](http://www.sencha.com/products/extjs/) |  | Y |  | Ext JS is the developer's choice for building powerful desktop web applications using JavaScript and web standards. |
-| [raphael](http://raphaeljs.com/) |  | Y | 30 | JavaScript Vector Library |
-| [underscore.js](http://jashkenas.github.io/underscore/) |  | Y | 80 | JavaScript's functional programming helper library. |
