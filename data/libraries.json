@@ -7292,5 +7292,15 @@
                 "ajaxSettings"
             ]
         ]
+    },
+    {
+        "libname": "boardgame-io",
+        "url": "cdnjs.com/libraries/boardgame-io",
+        "feature1": [["BoardgameIO", "client"], ["BoardgameIO", "LobbyClient"]]
+    },
+    {
+        "libname": "body-scroll-lock",
+        "url": "cdnjs.com/libraries/body-scroll-lock",
+        "feature1": [["bodyScrollLock", "disableBodyScroll"], ["bodyScrollLock", "clearAllBodyScrollLocks"]]
     }
 ]
