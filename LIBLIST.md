@@ -1,9 +1,9 @@
 
 ## Collected Library List
 
-In total, there are 546 libraries collected by the tool. Among them, 398 are equipped with version features.
+In total, there are 1250 libraries collected by the tool. Among them, 988 are equipped with version features.
 
-Data update time: 11.Jan 2024 16:30:41
+Data update time: 28.Jan 2024 11:29:22
 
 | Library | GitHub Star | Version Detection? | # Versions | Description |
 | ------- | ----------- | -------- | ---------- | ----------- |
