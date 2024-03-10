@@ -105,16 +105,20 @@
         }
 
         getAttr() {
-            // Get attributes, i.e., child properties, and return as a string list
-            if (this.ptr == undefined || this.ptr == null) {
-                return [];
-            }
-            if (typeof (this.ptr) == 'object' || typeof (this.ptr) == 'function') {
-                let vlist = Object.getOwnPropertyNames(this.ptr);
-                vlist = vlist.filter(val => !["prototype"].includes(val));
-                return vlist
-            }    
-            return [];
+            try{
+                // Get attributes, i.e., child properties, and return as a string list
+                if (this.ptr == undefined || this.ptr == null) {
+                    return [];
+                }
+                if (typeof (this.ptr) == 'object' || typeof (this.ptr) == 'function') {
+                    let vlist = Object.getOwnPropertyNames(this.ptr);
+                    vlist = vlist.filter(val => !["prototype"].includes(val));
+                    return vlist
+                }    
+                return []
+            } catch (error) {
+                return []
+            } 
         }
 
         str() {
@@ -140,7 +144,9 @@
         }
 
         compareWithPTree(root) {
-            // Compare the pTree from the detection location with the pTree. Return true if matches, false if not.
+            if (!root)
+                return true
+            // Compare the pTree from the detection location with the pTree "root". Return true if matches, false if not.
             const q = [root]
             const q2 = [new PropertyRecord()]
             while (q.length) {
@@ -223,16 +229,25 @@
         }
 
         findLibs(blacklist, depth_limit=3) {
+            // Stop the program after 5 seconds
+            let timeout = false
+            setTimeout(() => {
+                timeout = true
+            }, "5000")
+
             // Find potential libraries in the web context pTree
             const window_pr = new PropertyRecord()
             const q = [window_pr]
             while (q.length) {
+                if (timeout) break
+
                 let pr = q.shift()
                 if (pr.hasCircle())
                     continue
+
+                // console.log(pr.path_list)
                 
                 let children = pr.getAttr();
-
                 for (let i in this.libInfoList) {
                     let libInfo = this.libInfoList[i]
                     let lib_exist = false
@@ -275,7 +290,6 @@
                         this.addLib(i, pr)
                     }
                 }
-
                 // Remove global variables in blacklist
                 if (pr.isWindow()){
                     children = children.filter(val => !blacklist.includes(val));
@@ -386,6 +400,46 @@
                     location: lib.detectLocationRecord.str()
                 })
             }
+            // Sort based on libname
+            json_output.sort((a, b) => { return a.libname.localeCompare(b.libname)})
+            return json_output
+        }
+
+        convertToJson2() {
+            const json_output = []
+            for (let lib of this.libs) {
+                let _libname = this.libInfoList[lib.index]['libname']
+                let _version = lib.version.version_list
+
+                // Remove repeated entries
+                let has_the_same_entry = false
+                for (let entry of json_output) {
+                    if (_libname != entry.libname)
+                        continue
+                    if (_version.length != entry.version.length)
+                        continue
+                    let has_dif = false
+                    for (let i = 0; i < _version.length; i++) {
+                        if (_version[i] != entry.version[i]) {
+                            has_dif = true
+                            break
+                        }
+                        
+                    }
+                    if (!has_dif) {
+                        has_the_same_entry = true
+                        break
+                    }
+                }
+                if (!has_the_same_entry) {
+                    json_output.push({
+                        libname: _libname,
+                        version: _version,
+                    })
+                }     
+            }
+            // Sort based on libname
+            json_output.sort((a, b) => { return a.libname.localeCompare(b.libname)})
             return json_output
         }
     }
@@ -404,12 +458,16 @@
 
             // Find all keywords in the web object tree
             let L = new Libraries(libInfoList)
-            L.findLibs(blacklist)
+            L.findLibs(blacklist, 2)
+            console.log('libs found')
+            console.log(L)
             await L.checkVersion(baseurl)
 
             console.log(L.libs)
 
             this.window.postMessage({type: 'response', detected_libs: L.convertToJson()}, "*")
+
+            console.log(L.convertToJson2())
         }
     });
 
@@ -421,6 +479,30 @@
             return new Version(['1.1.0', '1.1.1', '1.1.2'], '1.1.0~1.1.2')
         }
 
+        test_polymer (root) {
+            return new Version([root['Polymer']['version']])
+        }
+
+        test_boomerangjs (root) {
+            return new Version([root['BOOMR']['version']])
+        }
+
+        test_datatables(root) {
+            return new Version([root['DataTable']['version']])
+        }
+
+        test_google_maps(root) {
+            return new Version([root['google']['maps']['version']])
+        }
+
+        test_extjs (root) {
+            const ext = root['Ext']
+            if (ext['versions'] && ext['versions']['core']) {
+                return new Version([ext['versions']['core']['version']])
+            }
+            return new Version([ext['version']])
+        }
+
         test_backbonejs(root) {
             const backbone = root['Backbone']
             if (!backbone) return new Version([])
@@ -428,6 +510,7 @@
             if (version == '0.9.9' || version == '1.2.3') return new Version([])
             return new Version([version])
         }
+
 
         test_camanjs(root) {
             if (root['Caman']['version']) {
@@ -482,7 +565,7 @@
         }        
 
         test_flot(root) {
-            const plot = null
+            let plot = null
             if (root['$']) plot = root['$']['plot']
             if (root['jQuery']) plot = root['jQuery']['plot']
             if (plot && plot['version']) 
