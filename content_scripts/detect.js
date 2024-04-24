@@ -402,14 +402,26 @@
             const libInfoList = await response2.json()
             // console.log(blacklist)
 
+            // Used to calculate spending time
+            let start_time = Date.now()
+
             // Find all keywords in the web object tree
             let L = new Libraries(libInfoList)
             L.findLibs(blacklist)
             await L.checkVersion(baseurl)
 
+            let end_time = Date.now()
+
             console.log(L.libs)
 
             this.window.postMessage({type: 'response', detected_libs: L.convertToJson()}, "*")
+
+            // Only used for Selenium automation
+            var detectTimeMeta = document.getElementById('lib-detect-time')
+            detectTimeMeta.setAttribute("content", end_time - start_time);
+
+            var detectResultMeta = document.getElementById('lib-detect-result')
+            detectResultMeta.setAttribute("content", json.dumps(L.convertToJson()));
         }
     });
 

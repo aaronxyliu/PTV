@@ -1,8 +1,17 @@
+
+
+// Only used for Selenium automation
+const AUTO_DETECT = false;
+const AUTO_WAIT_TIME = 5;   // seconds
+
+
 var head = document.getElementsByTagName('head')[0];
 var detectScript = document.createElement('script');
 detectScript.src = chrome.runtime.getURL('content_scripts/detect.js');
 head.appendChild(detectScript);
 
+
+// Only used for Selenium automation
 var detectResultMeta = document.createElement('meta');
 detectResultMeta.setAttribute("id", "lib-detect-result");
 head.appendChild(detectResultMeta);
@@ -45,10 +54,12 @@ window.addEventListener("message", function (event) {
 
 
 // Only used for Selenium automation
-// setTimeout(() => {
-//     window.postMessage({type: 'detect', urls: [url1, url2, url3]}, "*")
-//     console.log('auto send message <detect>.')
-// }, 10 *1000);
+if (AUTO_DETECT) {
+    setTimeout(() => {
+        window.postMessage({type: 'detect', url: baseurl}, "*")
+        console.log('auto send message <detect>.')
+    }, AUTO_WAIT_TIME * 1000);
+}
 
 
 
