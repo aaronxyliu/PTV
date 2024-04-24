@@ -22,16 +22,6 @@
     "background": {
       "service_worker": "background.js"
     },
-    "commands": {
-      "run-detect": {
-        "suggested_key": {
-          "default": "Ctrl+Shift+Y",
-          "mac": "Command+Shift+Y"
-        },
-        "description": "Start detection on the current page."
-      }
-    },
-  
     "action": {
       "default_icon": "icons/icon48.png",
       "default_title": "LibDetector",

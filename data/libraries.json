@@ -1,5 +1,110 @@
 [
     {
+        "libname": "polymer",
+        "url": "https://cdnjs.com/libraries/polymer",
+        "function": "test_polymer",
+        "feature1": [
+            [
+                "Polymer",
+                "dom"
+            ]
+        ]
+    },
+    {
+        "libname": "headjs",
+        "url": "https://cdnjs.com/libraries/headjs",
+        "feature1": [
+            [
+                "head",
+                "js"
+            ]
+        ]
+    },
+    {
+        "libname": "yepnope",
+        "url": "https://cdnjs.com/libraries/yepnope",
+        "feature1": [
+            [
+                "yepnope",
+                "injectCss"
+            ],
+            [
+                "yepnope",
+                "injectJs"
+            ]
+        ]
+    },
+    {
+        "libname": "pubsub-js",
+        "url": "https://cdnjs.com/libraries/pubsub-js",
+        "feature1": [
+            [
+                "PubSub",
+                "pub"
+            ],
+            [
+                "PubSub",
+                "subscribe"
+            ]
+        ]
+    },
+    {
+        "libname": "datatables",
+        "url": "https://cdnjs.com/libraries/datatables",
+        "function": "test_datatables",
+        "feature1": [
+            [
+                "DataTable",
+                "version"
+            ]
+        ]
+    },
+    {
+        "libname": "google_maps",
+        "url": "https://developers.google.com/maps/",
+        "function": "test_google_maps",
+        "feature1": [
+            [
+                "google",
+                "maps",
+                "version"
+            ]
+        ]
+    },
+    {
+        "libname": "extjs",
+        "url": "https://cdnjs.com/libraries/extjs",
+        "function": "test_extjs",
+        "feature1": [
+            [
+                "Ext",
+                "versions",
+                "core"
+            ]
+        ],
+        "feature2": [
+            [
+                "Ext",
+                "version"
+            ]
+        ]
+    },
+    {
+        "libname": "boomerangjs",
+        "url": "https://www.boomerangjs.org/",
+        "function": "test_boomerangjs",
+        "feature1": [
+            [
+                "BOOMR",
+                "utils"
+            ],
+            [
+                "BOOMR",
+                "init"
+            ]
+        ]
+    },
+    {
         "libname": "6to5",
         "url": "https://cdnjs.com/libraries/6to5",
         "function": "test_6to5",
@@ -6413,7 +6518,7 @@
         "function": "test_corejs",
         "versionfile": "corejs.json",
         "feature1": [["core", "locale"], ["core", "addLocale"]],
-        "feature2": [["__core-js_shared__", "wks"], ["__core-js_shared__", "symbols"]]
+        "feature2": [["__core-js_shared__", "wks"]]
     },
     {
         "libname": "d3",
@@ -6725,7 +6830,7 @@
         "feature1": [
             [
                 "ko",
-                "a"
+                "version"
             ],
             [
                 "ko",
