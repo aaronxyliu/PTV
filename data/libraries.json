@@ -1,5 +1,39 @@
 [
     {
+        "libname": "react",
+        "url": "https://react.dev",
+        "function": "test_react",
+        "feature1": [
+            [
+                "React",
+                "version"
+            ]
+        ]
+    },
+    {
+        "libname": "next",
+        "url": "https://nextjs.org/",
+        "function": "test_next",
+        "feature1": [
+            [
+                "next",
+                "version"
+            ]
+        ]
+    },
+    {
+        "libname": "angularjs",
+        "url": "https://angularjs.org/",
+        "function": "test_angularjs",
+        "feature1": [
+            [
+                "ng",
+                "version",
+                "full"
+            ]
+        ]
+    },
+    {
         "libname": "polymer",
         "url": "https://cdnjs.com/libraries/polymer",
         "function": "test_polymer",

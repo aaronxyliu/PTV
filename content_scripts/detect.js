@@ -485,6 +485,18 @@
         constructor() {
         }
 
+        test_react(root) {
+            return new Version([root['React']['version']])
+        }
+
+        test_next(root) {
+            return new Version([root['next']['version']])
+        }
+        
+        test_angularjs(root) {
+            return new Version([root['ng']['version']['full']])
+        }
+
         test_amplifyjs(root) {
             return new Version(['1.1.0', '1.1.1', '1.1.2'], '1.1.0~1.1.2')
         }
