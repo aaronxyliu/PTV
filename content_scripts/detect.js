@@ -477,7 +477,7 @@
             detectTimeMeta.setAttribute("content", end_time - start_time);
 
             var detectResultMeta = document.getElementById('lib-detect-result')
-            detectResultMeta.setAttribute("content", json.dumps(L.convertToJson()));
+            detectResultMeta.setAttribute("content", JSON.stringify(L.convertToJson()));
         }
     });
 

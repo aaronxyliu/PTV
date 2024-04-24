@@ -42,6 +42,7 @@ from selenium.webdriver.common.by import By
 from selenium import webdriver
 from selenium.webdriver.support.wait import WebDriverWait
 from selenium.webdriver.support.expected_conditions import presence_of_element_located
+import json
 
 # load this extension to the browser instance
 opt = Options()
@@ -58,7 +59,7 @@ def retrieveInfo(url):
     # read detection result and detection time
     result_str = driver.find_element(By.XPATH, '//*[@id="lib-detect-result"]').get_attribute("content")
     detect_time = driver.find_element(By.XPATH, '//*[@id="lib-detect-time"]').get_attribute("content")
-    return result_str, detect_time
+    return json.loads(result_str), detect_time
 ```
 
 #### Contibution
