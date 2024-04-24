@@ -27,14 +27,14 @@ In the popup, click the "detect" button. The detectioned libraries and correspon
 const AUTO_DETECT = true;
 const AUTO_WAIT_TIME = 5;
 ```
-Under such setting, this tool will send a signal to start the detection after 5 seconds from web page is loaded. The detection time and result will be stored in two created html elements with IDs of `lib-detect-result` and `lib-detect-time` respectively.
+Under such setting, this tool will send a signal to start the detection after 5 seconds when web page is loaded. The detection time and result will be stored in two created html elements with IDs of `lib-detect-result` and `lib-detect-time`, respectively.
 4. Open Chrome, navigate to the `chrome://extensions/` site, click the "Pack extension" button to pack this repo, and name it "ldat.crx".
 
 [<img src="img/pack.png" width="500"/>](img/pack.png)
 <!-- ![example](img/pack.png) -->
 
 5. Prepare Selenium and Chrome driver. Detail steps refer to guides in [PTV-gen](https://github.com/aaronxyliu/Anonymous).
-6. Use following python code to open a web page and collect the detection result.
+6. Use following python code to open a web page and collect the detection result. Notice that the detection result is stored in JSON format.
 
 ``` python
 from selenium.webdriver.chrome.options import Options
@@ -49,9 +49,12 @@ opt.add_extension(f'ldat.crx')
 driver = webdriver.Chrome(executable_path="./bin/chromedriver", options=opt)
 
 def retrieveInfo(url):
-    driver.get(url)    # open the web page
+    # navigate to the url
+    driver.get(url)    
+
     # wait until content appear in the element with id "lib-detect-result"
     WebDriverWait(driver, timeout=40).until(presence_of_element_located((By.XPATH, '//meta[@id="lib-detect-result" and @content]')))
+    
     # read detection result and detection time
     result_str = driver.find_element(By.XPATH, '//*[@id="lib-detect-result"]').get_attribute("content")
     detect_time = driver.find_element(By.XPATH, '//*[@id="lib-detect-time"]').get_attribute("content")
