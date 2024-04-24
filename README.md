@@ -30,7 +30,8 @@ const AUTO_WAIT_TIME = 5;
 Under such setting, this tool will send a signal to start the detection after 5 seconds from web page is loaded. The detection time and result will be stored in two created html elements with IDs of `lib-detect-result` and `lib-detect-time` respectively.
 4. Open Chrome, navigate to the `chrome://extensions/` site, click the "Pack extension" button to pack this repo, and name it "ldat.crx".
 
-![example](img/pack.png)
+[<img src="img/pack.png" width="500"/>](img/pack.png)
+<!-- ![example](img/pack.png) -->
 
 5. Prepare Selenium and Chrome driver. Detail steps refer to guides in [PTV-gen](https://github.com/aaronxyliu/Anonymous).
 6. Use following python code to open a web page and collect the detection result.
