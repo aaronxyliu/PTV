@@ -27,7 +27,7 @@ In the popup, click the "detect" button. The detectioned libraries and correspon
 const AUTO_DETECT = true;
 const AUTO_WAIT_TIME = 5;
 ```
-Under such setting, this tool will send a signal to start the detection after 5 seconds when web page is loaded. The detection time and result will be stored in two created html elements with IDs of `lib-detect-result` and `lib-detect-time`, respectively.
+Under such setting, this tool will send a signal to start the detection after 5 seconds when web page is loaded. The detection time and result will be stored in two created html elements with IDs of `lib-detect-result` and `lib-detect-time`, respectively.  
 4. Open Chrome, navigate to the `chrome://extensions/` site, click the "Pack extension" button to pack this repo, and name it "ldat.crx".
 
 [<img src="img/pack.png" width="500"/>](img/pack.png)
