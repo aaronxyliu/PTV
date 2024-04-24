@@ -45,8 +45,8 @@ from selenium.webdriver.support.expected_conditions import presence_of_element_l
 
 # load this extension to the browser instance
 opt = Options()
-opt.add_extension(f'ldat.crx')
-driver = webdriver.Chrome(executable_path="./bin/chromedriver", options=opt)
+opt.add_extension('ldat.crx')
+driver = webdriver.Chrome(executable_path="chromedriver", options=opt)
 
 def retrieveInfo(url):
     # navigate to the url
