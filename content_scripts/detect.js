@@ -228,6 +228,33 @@
             this.libs.push(lib)
         }
 
+        addLibv(libindex, version) {    // version is of <Version> type
+            let lib = new Library(libindex, null)
+            lib.version = version
+            this.libs.push(lib)
+        }
+
+        prefindLibs() {
+            // Used for some frameworks, cannot use pTree method to detect
+            for (let index in this.libInfoList) {
+                const v_func = libInfoList[index]['idfunc']    // library identification function, which returns a truth value (whether the lib is found) and the version
+
+                if (this.VerDe[v_func] != undefined && typeof this.VerDe[v_func] == 'function') {
+                    // Invoke functions in <VersionDetermine> class
+                    try {
+                        let libfound, _version = this.VerDe[v_func](window)
+                        if (libfound) {
+                            if (!_version) {
+                                _version = new Version(null)
+                            }
+                            this.addLib(index, _version)
+                        }
+                    }
+                    catch (e)  {console.log(e)}
+                }
+            }
+        }
+
         findLibs(blacklist, depth_limit=3) {
             // Stop the program after 5 seconds
             let timeout = false
