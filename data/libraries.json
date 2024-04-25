@@ -2,13 +2,12 @@
     {
         "libname": "react",
         "url": "https://react.dev",
-        "function": "test_react",
-        "feature1": [
-            [
-                "React",
-                "version"
-            ]
-        ]
+        "idfunc": "id_react"
+    },
+    {
+        "libname": "angular",
+        "url": "https://angular.io/",
+        "idfunc": "id_angular"
     },
     {
         "libname": "next",
@@ -32,6 +31,46 @@
                 "full"
             ]
         ]
+    },
+    {
+        "libname": "vue",
+        "url": "https://vuejs.org/",
+        "feature1": [
+            ["__VUE__"],["__VUE_BANNER_ID__"]
+        ]
+    },
+    {
+        "libname": "emberjs",
+        "url": "https://emberjs.com/",
+        "function": "test_emberjs",
+        "feature1": [
+            [
+                "Ember",
+                "GUID_KEY"
+            ]
+        ],
+        "feature2": [
+            [
+                "Em",
+                "GUID_KEY"
+            ]
+        ]
+    },
+    {
+        "libname": "foundation",
+        "url": "https://get.foundation/",
+        "function": "test_foundation",
+        "feature1": [
+            [
+                "Foundation",
+                "Toggler"
+            ]
+        ]
+    },
+    {
+        "libname": "preact",
+        "url": "https://preactjs.com/",
+        "idfunc": "id_preact"
     },
     {
         "libname": "polymer",

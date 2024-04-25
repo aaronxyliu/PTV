@@ -237,17 +237,17 @@
         prefindLibs() {
             // Used for some frameworks, cannot use pTree method to detect
             for (let index in this.libInfoList) {
-                const v_func = libInfoList[index]['idfunc']    // library identification function, which returns a truth value (whether the lib is found) and the version
+                const v_func = this.libInfoList[index]['idfunc']    // library identification function, which returns a truth value (whether the lib is found) and the version
 
                 if (this.VerDe[v_func] != undefined && typeof this.VerDe[v_func] == 'function') {
                     // Invoke functions in <VersionDetermine> class
                     try {
-                        let libfound, _version = this.VerDe[v_func](window)
+                        let [libfound, _version] = this.VerDe[v_func](window)
                         if (libfound) {
                             if (!_version) {
                                 _version = new Version(null)
                             }
-                            this.addLib(index, _version)
+                            this.addLibv(index, _version)
                         }
                     }
                     catch (e)  {console.log(e)}
@@ -424,7 +424,7 @@
                     libname: this.libInfoList[lib.index]['libname'],
                     url: this.libInfoList[lib.index]['url'],
                     version: lib.version.version_string,
-                    location: lib.detectLocationRecord.str()
+                    location: lib.detectLocationRecord ? lib.detectLocationRecord.str() : ''
                 })
             }
             // Sort based on libname
@@ -488,6 +488,7 @@
 
             // Find all keywords in the web object tree
             let L = new Libraries(libInfoList)
+            L.prefindLibs()
             L.findLibs(blacklist, 2)
             console.log('libs found')
             console.log(L)
@@ -509,19 +510,95 @@
     });
 
     class VersionDetermine {
-        constructor() {
+        constructor () {
         }
 
-        test_react(root) {
-            return new Version([root['React']['version']])
+        id_react (win) {
+            function isMatch(node) {
+                return node!=null && node._reactRootContainer!=null;
+            }
+            function nodeFilter(node) {
+                return isMatch(node) ? NodeFilter.FILTER_ACCEPT : NodeFilter.FILTER_SKIP;
+            }
+            var reactRoot = document.getElementById('react-root');
+            var altHasReact = document.querySelector('*[data-reactroot]');
+            var bodyReactRoot = isMatch(document.body) || isMatch(document.body.firstElementChild);
+            var hasReactRoot = bodyReactRoot|| document.createTreeWalker(document.body, NodeFilter.SHOW_ELEMENT, nodeFilter).nextNode() != null;
+            if (hasReactRoot || reactRoot && reactRoot.innerText.length > 0 || altHasReact || win.React && win.React.Component) {
+                if (win['React'] && win['React']['version'])
+                    return [true, new Version([root['React']['version']])];
+                else
+                return [true, new Version([])];
+            }
+            return [false, null];
         }
 
-        test_next(root) {
+        id_angular (win) {
+            var ngVersion = win.document.querySelector('[ng-version]');
+            if (ngVersion) {
+                return [true, new Version([ngVersion.getAttribute('ng-version')])];
+            }
+            else if (win.ng && win.ng.probe instanceof Function) {
+                return [true, new Version([])];
+            }
+            return [false, null];
+        }
+
+        id_preact (win) {
+            var expando = typeof Symbol!='undefined' && Symbol.for && Symbol.for('preactattr');
+            function isMatch(node) {
+                if ('__k' in node && 'props' in node.__k && 'type' in node.__k) {
+                    return true;
+                }
+                return '_component' in node || '__preactattr_' in node || expando && node[expando]!=null;
+            }
+            function getMatch(node) {
+                return node!=null && isMatch(node) && node;
+            }
+            function nodeFilter(node) {
+                return isMatch(node) ? NodeFilter.FILTER_ACCEPT : NodeFilter.FILTER_SKIP;
+            }
+            var preactRoot = getMatch(document.body) || getMatch(document.body.firstElementChild);
+            if (!preactRoot) {
+                preactRoot = document.createTreeWalker(document.body, NodeFilter.SHOW_ELEMENT, nodeFilter).nextNode();
+            }
+            if (preactRoot || win.preact) {
+                if (preactRoot) {
+                    if ('__k' in preactRoot) {
+                        return [true, new Version(['10'])];
+                    }
+                    if ('__preactattr_' in preactRoot) {
+                        return [true, new Version(['8'])];
+                    }
+                    if (expando && preactRoot[expando]!=null) {
+                        return [true, new Version(['7'])];
+                    }
+                }
+                return [true, new Version([])];
+            }
+            return [false, null];
+        }
+
+        test_next (root) {
             return new Version([root['next']['version']])
         }
         
-        test_angularjs(root) {
+        test_angularjs (root) {
             return new Version([root['ng']['version']['full']])
+        }
+
+        test_emberjs (root) {
+            if (root['Ember'] && root['Ember']['VERSION'])
+                return new Version([root['Ember']['VERSION']])
+            if (root['Em'] && root['Ember']['VERSION'])
+                return new Version([root['Em']['VERSION']])
+            return new Version([])
+        }
+
+        test_foundation (root) {
+            if (root['Foundation'] && root['Foundation']['version'])
+                return new Version([root['Foundation']['version']])
+            return new Version([])
         }
 
         test_amplifyjs(root) {
