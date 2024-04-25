@@ -68,8 +68,8 @@
         ]
     },
     {
-        "libname": "svelte",
-        "url": "https://svelte.dev/",
+        "libname": "semantic-ui",
+        "url": "https://semantic-ui.com/",
         "versionfile": "semanticui.json",
         "feature1": [
             [
