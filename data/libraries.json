@@ -68,6 +68,37 @@
         ]
     },
     {
+        "libname": "svelte",
+        "url": "https://svelte.dev/",
+        "feature1": [
+            [
+                "__svelte",
+                "v"
+            ]
+        ]
+    },
+    {
+        "libname": "vue",
+        "url": "https://cn.vuejs.org/",
+        "feature1": [
+            [
+                "__VUE__"
+            ],[
+                "__VUE_INSTANCE_SETTERS__"
+            ]
+        ]
+    },
+    {
+        "libname": "vue2",
+        "url": "https://v2.vuejs.org/",
+        "function": "test_vue2",
+        "feature1": [
+            [
+                "Vue", "version"
+            ]
+        ]
+    },
+    {
         "libname": "semantic-ui",
         "url": "https://semantic-ui.com/",
         "versionfile": "semanticui.json",

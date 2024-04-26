@@ -587,6 +587,10 @@
             return new Version([root['ng']['version']['full']])
         }
 
+        test_vue2 (root) {
+            return new Version([root['Vue']['version']])
+        }
+
         test_emberjs (root) {
             if (root['Ember'] && root['Ember']['VERSION'])
                 return new Version([root['Ember']['VERSION']])
