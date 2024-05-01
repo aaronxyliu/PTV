@@ -498,6 +498,9 @@
 
             console.log(L.libs)
 
+            console.log('=== Detection Result ===')
+            console.log(L.convertToJson2())
+
             this.window.postMessage({type: 'response', detected_libs: L.convertToJson()}, "*")
 
             // Only used for Selenium automation
@@ -505,7 +508,7 @@
             detectTimeMeta.setAttribute("content", end_time - start_time);
 
             var detectResultMeta = document.getElementById('lib-detect-result')
-            detectResultMeta.setAttribute("content", JSON.stringify(L.convertToJson()));
+            detectResultMeta.setAttribute("content", JSON.stringify(L.convertToJson2()));
         }
     });
 
