@@ -1,8 +1,8 @@
 
 
 // Only used for Selenium automation
-const AUTO_DETECT = false;
-const AUTO_WAIT_TIME = 5;   // seconds
+const AUTO_DETECT = true;
+const AUTO_WAIT_TIME = 4;   // seconds
 
 
 var head = document.getElementsByTagName('head')[0];

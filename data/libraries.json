@@ -437,22 +437,6 @@
         ]
     },
     {
-        "libname": "autocomplete.js",
-        "url": "https://cdnjs.com/libraries/autocomplete.js",
-        "function": "test_autocompletejs",
-        "versionfile": "autocompletejs.json",
-        "feature1": [
-            [
-                "$",
-                "fn"
-            ],
-            [
-                "jQuery",
-                "fn"
-            ]
-        ]
-    },
-    {
         "libname": "autosize.js",
         "url": "https://cdnjs.com/libraries/autosize.js",
         "feature1": [
@@ -7845,16 +7829,18 @@
     {
         "libname": "tesseract.js",
         "url": "https://cdnjs.com/libraries/tesseract.js",
+        "versionfile": "tesseractjs.json",
         "feature1": [
             [
-                "regeneratorRuntime",
-                "wrap"
+                "Tesseract",
+                "workerOptions"
             ],
             [
-                "regeneratorRuntime",
-                "isGeneratorFunction"
+                "Tesseract",
+                "worker"
             ]
-        ]
+        ],
+        "feature2": [["Tesseract", "PSM"], ["Tesseract", "OEM"]]
     },
     {
         "libname": "tether",
