@@ -300,15 +300,17 @@
     {
         "libname": "ant-design-pro",
         "url": "https://cdnjs.com/libraries/ant-design-pro",
+        "versionfile": "antdesignpro.json",
         "feature1": [
             [
-                "core",
-                "inspectSource"
+                "NoticeIcon",
+                "defaultProps",
+                "locale"
             ],
             [
-                "core",
-                "String",
-                "endsWith"
+                "NoticeIcon",
+                "defaultProps",
+                "onClear"
             ]
         ]
     },
@@ -2036,16 +2038,14 @@
     {
         "libname": "elfinder",
         "url": "https://cdnjs.com/libraries/elfinder",
-        "function": "test_elfinder",
-        "versionfile": "elfinder.json",
         "feature1": [
             [
                 "$",
-                "ui"
+                "fn","elfinder"
             ],
             [
-                "$",
-                "fn"
+                "jQuery",
+                "fn","elfinder"
             ]
         ]
     },
@@ -2325,25 +2325,18 @@
         "libname": "fancybox",
         "url": "https://cdnjs.com/libraries/fancybox",
         "function": "test_fancybox",
-        "versionfile": "fancybox.json",
         "feature1": [
             [
                 "$",
-                "easing"
-            ],
-            [
-                "jQuery",
-                "easing"
+                "fancybox",
+                "version"
             ]
         ],
         "feature2": [
             [
-                "$",
-                "fancybox"
-            ],
-            [
-                "$",
-                "fn"
+                "jQuery",
+                "fancybox",
+                "version"
             ]
         ]
     },
@@ -2706,11 +2699,19 @@
         "feature1": [
             [
                 "FroalaEditor",
-                "KEYCODE"
+                "VERSION"
+            ]
+        ],
+        "feature2": [
+            [   
+                "$",
+                "Editable",
+                "TAG_ORDER"
             ],
-            [
-                "FroalaEditor",
-                "SVG"
+            [   
+                "fn",
+                "Editable",
+                "TAG_ORDER"
             ]
         ]
     },
@@ -8732,6 +8733,7 @@
     {
         "libname": "yepnope",
         "url": "https://cdnjs.com/libraries/yepnope",
+        "versionfile": "yepnope.json",
         "feature1": [
             [
                 "yepnope",

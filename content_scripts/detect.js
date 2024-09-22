@@ -11,7 +11,7 @@
 
     class Version {
         constructor(vlist, vstr = '') { 
-            // vlist: all possible versions of a library   e.g. ['1.1.1, 1.1.2, 1.1.3]
+            // vlist: all possible versions of a library   e.g. ['1.1.1', '1.1.2', '1.1.3']
             // vstr: the string displayed in UI            e.g. '1.1.1~1.1.3'
             if (vstr === null || vstr=== undefined || !vlist || !Array.isArray(vlist) || vstr == 'unknown' || vlist.length == 0 || !vlist[0]) {
                 this.version_list = []
@@ -531,7 +531,7 @@
                 if (win['React'] && win['React']['version'])
                     return [true, new Version([root['React']['version']])];
                 else
-                return [true, new Version([])];
+                    return [true, new Version([])];
             }
             return [false, null];
         }
@@ -1166,6 +1166,13 @@
             return new Version([root.qq.version])
         }
 
+        test_fancybox (root) {
+            if (root.$ && root.$.fancybox)
+                return new Version([root.$.fancybox.version])
+            if (root.jQuery && root.jQuery.fancybox.version)
+                return new Version([root.jQuery.fancybox.version])
+        }
+
         test_fingerprintjs2 (root) {
             return new Version([root.Fingerprint2.VERSION])
         }
@@ -1175,7 +1182,10 @@
         }
 
         test_froalaeditor (root) {
-            return new Version([root.FroalaEditor.VERSION])
+            if (root.FroalaEditor && root.FroalaEditor.VERSION)
+                return new Version([root.FroalaEditor.VERSION])
+            else
+                return new Version(["1.1.8", "1.2.8"], "1.1.8 ~ 1.2.8")
         }
 
         test_fullcalendar (root) {
