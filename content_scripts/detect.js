@@ -591,6 +591,7 @@
         }
 
         test_vue2 (root) {
+            // https://github.com/vuejs/vue/
             return new Version([root['Vue']['version']])
         }
 
@@ -617,6 +618,7 @@
         }
 
         test_boomerangjs (root) {
+            // https://github.com/akamai/boomerang
             return new Version([root['BOOMR']['version']])
         }
 
@@ -625,6 +627,7 @@
         }
 
         test_google_maps(root) {
+            // https://developers.google.com/maps/documentation/javascript/versions
             return new Version([root['google']['maps']['version']])
         }
 

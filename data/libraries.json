@@ -2716,22 +2716,6 @@
         ]
     },
     {
-        "libname": "froala-editor",
-        "url": "https://cdnjs.com/libraries/froala-editor",
-        "function": "test_froalaeditor",
-        "versionfile": "froalaeditor.json",
-        "feature1": [
-            [
-                "$",
-                "fn"
-            ],
-            [
-                "jQuery",
-                "fn"
-            ]
-        ]
-    },
-    {
         "libname": "fullcalendar",
         "url": "https://cdnjs.com/libraries/fullcalendar",
         "function": "test_fullcalendar",
@@ -2755,10 +2739,6 @@
             [
                 "$",
                 "fullCalendar"
-            ],
-            [
-                "$",
-                "fn"
             ]
         ]
     },
