@@ -148,13 +148,21 @@
                 return true
             // Compare the pTree from the detection location with the pTree "root". Return true if matches, false if not.
             const q = [root]
-            const q2 = [new PropertyRecord()]
+            const q2 = [this.detectLocationRecord]
+            // const q2 = [new PropertyRecord()]
+            let first_round_flag = true
             while (q.length) {
                 let vertex = q.shift()
                 let pr = q2.shift()
-
-                if (!this.checkComply(pr.ptr, vertex['d'])) return false
-
+                
+                // Skip checking the "window" vertex
+                if (first_round_flag) {
+                    first_round_flag = false
+                }
+                else {
+                    if (!this.checkComply(pr.ptr, vertex['d'])) return false
+                }
+                
                 for (let child of vertex['c']) {
                     q.push(child)
                     let new_pr = new PropertyRecord()
@@ -367,18 +375,18 @@
                             // Version file exists
                             const version_dict = await response.json()
                             for (let [_, version_entry] of Object.entries(version_dict)) {
-                                if (version_entry['compasison_result'] === undefined) {
-                                    version_entry['compasison_result'] = lib.compareWithPTree(version_entry['pTree'])
+                                if (version_entry['comparison_result'] === undefined) {
+                                    version_entry['comparison_result'] = lib.compareWithPTree(version_entry['pTree'])
                                 }
-                                if (version_entry['compasison_result'] == true) {
+                                if (version_entry['comparison_result'] == true) {
                                     // Ensure no supertree matching
                                     let have_S_match = false
                                     for (let S_index of version_entry['Sm']) {
                                         let S_entry = version_dict[S_index]
-                                        if (S_entry['compasison_result'] === undefined) {
-                                            S_entry['compasison_result'] = lib.compareWithPTree(S_entry['pTree'])
+                                        if (S_entry['comparison_result'] === undefined) {
+                                            S_entry['comparison_result'] = lib.compareWithPTree(S_entry['pTree'])
                                         }
-                                        if (S_entry['compasison_result'] == true) {
+                                        if (S_entry['comparison_result'] == true) {
                                             have_S_match = true
                                             break
                                         }
