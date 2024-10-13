@@ -18,6 +18,8 @@
                 this.version_string = 'unknown'
             }
             else {
+                // for (let i = 0; i < vlist.length; i++)
+                //     vlist[i] = String(vlist[i])
                 this.version_list = vlist   
                 if (vstr == '')
                     this.version_string = vlist.join(', ')
@@ -45,6 +47,12 @@
             this.ptr = PR.ptr
         }
 
+        isProxy(proxy) {
+            // Check whether an object is a proxy
+            // https://stackoverflow.com/questions/36372611/how-to-test-if-an-object-is-a-proxy
+            return proxy == null ? false : !!proxy[Symbol.for("__isProxy")];
+        }
+
         grow(attribute_name) {  // PR is an instance of PropertyRecord
             if (this.ptr == undefined || this.ptr == null) return false
 
@@ -59,6 +67,9 @@
                 // from accessing a cross-origin frame.
                 return false
             }
+            if (this.isProxy(this.ptr))
+                // Reject proxy object
+                return false
             return true
         }
 
@@ -383,6 +394,8 @@
                                     let have_S_match = false
                                     for (let S_index of version_entry['Sm']) {
                                         let S_entry = version_dict[S_index]
+                                        if (!S_entry)
+                                            continue
                                         if (S_entry['comparison_result'] === undefined) {
                                             S_entry['comparison_result'] = lib.compareWithPTree(S_entry['pTree'])
                                         }
@@ -729,6 +742,25 @@
             if (version == '2.0.4') return new Version(['2.0.4', '2.0.5'])
             if (version == '2.0.6') return new Version(['2.0.6', '2.0.7'])
             return new Version([version])
+        }
+
+        test_micromodal(root) {
+            return new Version([
+                "0.3.0",
+                "0.3.1",
+                "0.3.2",
+                "0.4.0",
+                "0.4.1",
+                "0.4.10",
+                "0.4.2",
+                "0.4.3",
+                "0.4.4",
+                "0.4.5",
+                "0.4.6",
+                "0.4.7",
+                "0.4.8",
+                "0.4.9"
+            ], "0.3.0 ~ 0.4.9")
         }
 
         test_handlebarsjs(root) {
@@ -1227,7 +1259,10 @@
         }
 
         test_html5shiv (root) {
-            return new Version([root.html5.version])
+            if (root.html5.version)
+                return new Version([root.html5.version])
+            else
+                return new Version(["2.1", "2.2"])
         }
 
         test_interactjs (root) {

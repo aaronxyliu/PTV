@@ -2192,6 +2192,7 @@
     {
         "libname": "EventEmitter",
         "url": "https://cdnjs.com/libraries/EventEmitter",
+        "versionfile": "EventEmitter.json",
         "feature1": [
             [
                 "EventEmitter",
@@ -2437,6 +2438,7 @@
     {
         "libname": "FileSaver.js",
         "url": "https://cdnjs.com/libraries/FileSaver.js",
+        "versionfile": "FileSaverjs.json",
         "feature1": [
             [
                 "saveAs"
@@ -3356,21 +3358,6 @@
         ]
     },
     {
-        "libname": "html-minifier",
-        "url": "https://cdnjs.com/libraries/html-minifier",
-        "feature1": [
-            [
-                "HTMLParser"
-            ],
-            [
-                "HTMLtoXML"
-            ],
-            [
-                "HTMLtoDOM"
-            ]
-        ]
-    },
-    {
         "libname": "html-to-image",
         "url": "https://cdnjs.com/libraries/html-to-image",
         "feature1": [
@@ -3911,19 +3898,22 @@
         "feature1": [
             [
                 "jQuery",
-                "tools"
+                "tools",
+                "version"
             ]
         ],
         "feature2": [
             [
                 "$",
-                "tools"
+                "tools",
+                "version"
             ]
         ]
     },
     {
         "libname": "jquery.imagesloaded",
         "url": "https://cdnjs.com/libraries/jquery.imagesloaded",
+        "versionfile": "jqueryimagesloaded.json",
         "feature1": [
             [
                 "eventie",
@@ -3932,6 +3922,12 @@
             [
                 "eventie",
                 "unbind"
+            ]
+        ],
+        "feature2": [
+            [
+                "imagesLoaded",
+                "makeJQueryPlugin"
             ]
         ]
     },
@@ -3953,12 +3949,18 @@
     {
         "libname": "jquery_lazyload",
         "url": "https://cdnjs.com/libraries/jquery_lazyload",
+        "versionfile": "jquery_lazyload.json",
         "feature1": [
             [
                 "lazyload"
             ],
             [
                 "LazyLoad"
+            ]
+        ],
+        "feature2": [
+            [
+                "jQuery", "fn", "lazyload"
             ]
         ]
     },
@@ -4699,20 +4701,6 @@
         ]
     },
     {
-        "libname": "material-kit",
-        "url": "https://cdnjs.com/libraries/material-kit",
-        "feature1": [
-            [
-                "setAttributes",
-                "arguments"
-            ],
-            [
-                "setAttributes",
-                "caller"
-            ]
-        ]
-    },
-    {
         "libname": "materialize",
         "url": "https://cdnjs.com/libraries/materialize",
         "versionfile": "materialize.json",
@@ -4888,6 +4876,7 @@
     {
         "libname": "micromodal",
         "url": "https://cdnjs.com/libraries/micromodal",
+        "function": "test_micromodal",
         "feature1": [
             [
                 "MicroModal",
