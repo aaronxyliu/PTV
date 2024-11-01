@@ -75,7 +75,7 @@
 
         growFrom(PR, attribute_name) {  // PR is an instance of PropertyRecord
             if (PR.ptr == undefined || PR.ptr == null) return false
-
+            this.length = PR.path_list.length
             this.path_list = [...PR.path_list]
             this.par_ptrs = [...PR.par_ptrs]
             this.path_list.push(attribute_name)
@@ -274,7 +274,9 @@
             }
         }
 
-        findLibs(blacklist, depth_limit=3) {
+        findLibs(blacklist, depth_limit=3, size_limit=10000) {
+            let visited_vertex_num = 1
+
             // Stop the program after 5 seconds
             let timeout = false
             setTimeout(() => {
@@ -341,12 +343,16 @@
                     children = children.filter(val => !blacklist.includes(val));
                 }
                     
-    
                 if (pr.depth() < depth_limit) {
                     for (let child_v of children) {
+                        if (visited_vertex_num >= size_limit) {
+                            // Prevent web out of memory crash
+                            break
+                        }
                         let new_pr = new PropertyRecord()
                         new_pr.growFrom(pr, child_v)
                         q.push(new_pr)
+                        visited_vertex_num += 1
                     }
                 }    
             }
