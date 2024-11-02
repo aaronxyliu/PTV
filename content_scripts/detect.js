@@ -538,7 +538,7 @@
 
             // Some website doesn't have the JSON.stringify function, such as: https://fizon.de/
             try{ var result_str = JSON.stringify(L.convertToJson2()) } catch (e1) {
-                try { var result_str = JSON.toString(L.convertToJson2()) } catch(e2) {
+                try { var result_str = JSON.encode(L.convertToJson2()) } catch(e2) {
                     var result_str = ''
                 }
             }
