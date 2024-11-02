@@ -536,10 +536,15 @@
 
             var detectResultMeta = document.getElementById('lib-detect-result')
 
+            var result_json = L.convertToJson2()
+
             // Some website doesn't have the JSON.stringify function, such as: https://fizon.de/
-            try{ var result_str = JSON.stringify(L.convertToJson2()) } catch (e1) {
-                try { var result_str = JSON.encode(L.convertToJson2()) } catch(e2) {
-                    var result_str = ''
+            try{ var result_str = JSON.stringify(result_json) } catch (e1) {
+                try { var result_str = JSON.encode(result_json) } catch(e2) {
+                    try { var result_str = JSON.objToJSON(result_json) } catch(e3) {
+                        console.log('Warning: JSON stringify failed.')
+                        var result_str = '[]'
+                    }
                 }
             }
             
