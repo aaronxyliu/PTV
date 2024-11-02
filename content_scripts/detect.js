@@ -535,7 +535,15 @@
             detectTimeMeta.setAttribute("content", end_time - start_time);
 
             var detectResultMeta = document.getElementById('lib-detect-result')
-            detectResultMeta.setAttribute("content", JSON.stringify(L.convertToJson2()));
+
+            // Some website doesn't have the JSON.stringify function, such as: https://fizon.de/
+            try{ var result_str = JSON.stringify(L.convertToJson2()) } catch (e1) {
+                try { var result_str = JSON.toString(L.convertToJson2()) } catch(e2) {
+                    var result_str = ''
+                }
+            }
+            
+            detectResultMeta.setAttribute("content", result_str);
         }
     });
 
