@@ -81,15 +81,10 @@
         "libname": "aframe",
         "url": "https://cdnjs.com/libraries/aframe",
         "function": "test_aframe",
-        "versionfile": "aframe.json",
         "feature1": [
             [
-                "THREE",
-                "RGBFormat"
-            ],
-            [
-                "THREE",
-                "Object3D"
+                "AFRAME",
+                "version"
             ]
         ]
     },
@@ -429,6 +424,7 @@
     {
         "libname": "autosize.js",
         "url": "https://cdnjs.com/libraries/autosize.js",
+        "versionfile": "autotrack.json",
         "feature1": [
             [
                 "autosize",
@@ -1108,6 +1104,7 @@
     {
         "libname": "cash",
         "url": "https://cdnjs.com/libraries/cash",
+        "versionfile": "cash.json",
         "feature1": [
             [
                 "cash",
@@ -1670,6 +1667,7 @@
     {
         "libname": "dayjs",
         "url": "https://cdnjs.com/libraries/dayjs",
+        "versionfile": "dayjs.json",
         "feature1": [
             [
                 "dayjs",
@@ -1767,12 +1765,8 @@
         "function": "test_docute",
         "feature1": [
             [
-                "Prism",
-                "languages"
-            ],
-            [
-                "Prism",
-                "util"
+                "Docute",
+                "version"
             ]
         ]
     },
@@ -2088,6 +2082,7 @@
     {
         "libname": "enquire.js",
         "url": "https://cdnjs.com/libraries/enquire.js",
+        "versionfile": "enquirejs.json",
         "feature1": [
             [
                 "enquire",
@@ -2138,6 +2133,7 @@
     {
         "libname": "es6-promise",
         "url": "https://cdnjs.com/libraries/es6-promise",
+        "versionfile": "es6promise.json",
         "feature1": [
             [
                 "ES6Promise",
@@ -2367,6 +2363,7 @@
     {
         "libname": "feather-icons",
         "url": "https://cdnjs.com/libraries/feather-icons",
+        "versionfile": "feathericons.json",
         "feature1": [
             [
                 "feather",
@@ -2464,6 +2461,7 @@
     {
         "libname": "flatpickr",
         "url": "https://cdnjs.com/libraries/flatpickr",
+        "versionfile": "flatpickr.json",
         "feature1": [
             [
                 "flatpickr",
@@ -3207,6 +3205,7 @@
     {
         "libname": "highlight.js",
         "url": "https://cdnjs.com/libraries/highlight.js",
+        "function": "test_highlightjs",
         "versionfile": "highlightjs.json",
         "feature1": [
             [
@@ -3866,7 +3865,6 @@
     {
         "libname": "jquery-timeago",
         "url": "https://cdnjs.com/libraries/jquery-timeago",
-        "function": "test_jquerytimeago",
         "versionfile": "jquerytimeago.json",
         "feature1": [
             [
@@ -3972,6 +3970,7 @@
     {
         "libname": "js-xss",
         "url": "https://cdnjs.com/libraries/js-xss",
+        "versionfile": "jsxss.json",
         "feature1": [
             [
                 "filterXSS",
@@ -6095,6 +6094,8 @@
     {
         "libname": "pubsub-js",
         "url": "https://cdnjs.com/libraries/pubsub-js",
+        "function": "test_pubsubjs",
+        "versionfile": "pubsubjs.json",
         "feature1": [
             [
                 "PubSub",
@@ -6215,6 +6216,7 @@
     {
         "libname": "qrcode",
         "url": "https://cdnjs.com/libraries/qrcode",
+        "function": "test_qrcode",
         "feature1": [
             [
                 "QRCode",
@@ -7169,6 +7171,7 @@
     {
         "libname": "simplebar",
         "url": "https://cdnjs.com/libraries/simplebar",
+        "versionfile": "simplebar.json",
         "feature1": [
             [
                 "SimpleBar",
@@ -7669,6 +7672,7 @@
     {
         "libname": "sweetalert",
         "url": "https://cdnjs.com/libraries/sweetalert",
+        "versionfile": "sweetalert.json",
         "feature1": [
             [
                 "sweetAlert",
@@ -8356,8 +8360,6 @@
     {
         "libname": "vivus",
         "url": "https://cdnjs.com/libraries/vivus",
-        "function": "test_vivus",
-        "versionfile": "vivus.json",
         "feature1": [
             [
                 "Vivus",
