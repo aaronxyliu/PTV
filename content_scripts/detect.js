@@ -950,9 +950,18 @@
             return new Version([root.THREE.REVISION])
         }
 
-        test_tweenjs (root) {
-            return new Version([root.TWEEN.REVISION])
+        test_pubsubjs (root) {
+            if (root.PubSub.version) return new Version([root.PubSub.version])
+            return new Version([])
         }
+
+        test_aframe (root) {
+            return new Version([root.AFRAME.version])
+        }
+
+        // test_tweenjs (root) {
+        //     return new Version([root.TWEEN.REVISION])
+        // }
 
         test_twojs (root) {
             const version = root.Two.Version
@@ -1160,6 +1169,15 @@
             return new Version([root.CoffeeScript.VERSION])
         }
 
+        test_qrcode (root) {
+            return new Version(['1.0.0'])
+        }
+
+        test_highlightjs (root) {
+            if (root.hljs.versionString) return new Version([root.hljs.versionString])
+            else return new Version([])
+        }
+
         test_crossfilter (root) {
             return new Version([root.crossfilter.version])
         }
@@ -1175,7 +1193,7 @@
         }
 
         test_docute (root) {
-            return new Version([root["__DOCUTE_VERSION__"]])
+            return new Version([root["Docute"]["version"]])
         }
 
         test_dompurify (root) {
