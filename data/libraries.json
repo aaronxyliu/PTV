@@ -241,18 +241,6 @@
         ]
     },
     {
-        "libname": "angularjs",
-        "url": "https://angularjs.org/",
-        "function": "test_angularjs",
-        "feature1": [
-            [
-                "ng",
-                "version",
-                "full"
-            ]
-        ]
-    },
-    {
         "libname": "AniJS",
         "url": "https://cdnjs.com/libraries/AniJS",
         "versionfile": "AniJS.json",
