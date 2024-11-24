@@ -54,10 +54,10 @@
         }
 
         grow(attribute_name) {  // PR is an instance of PropertyRecord
-            if (this.ptr == undefined || this.ptr == null) return false
-
+            if (this.ptr == undefined || this.ptr == null) return false  
             this.path_list.push(attribute_name)
-            this.par_ptrs.push(this.ptr)
+            this.par_ptrs.push(this.ptr) 
+            let old_ptr = this.ptr
             try{
                 this.ptr = this.ptr[attribute_name]
             }
@@ -67,9 +67,13 @@
                 // from accessing a cross-origin frame.
                 return false
             }
-            if (this.isProxy(this.ptr))
+            if (this.isProxy(old_ptr)) {
                 // Reject proxy object
+                console.log('Warning: Proxy object detected.')
+                console.log(this.path_list)
                 return false
+            }
+            
             return true
         }
 
@@ -622,12 +626,12 @@
             return [false, null];
         }
 
+        test_bootstrap (root) {       
+            return new Version([root['bootstrap']['Alert']['VERSION']]) 
+        }
+
         test_next (root) {
             return new Version([root['next']['version']])
-        }
-        
-        test_angularjs (root) {
-            return new Version([root['ng']['version']['full']])
         }
 
         test_vue2 (root) {
