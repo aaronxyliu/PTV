@@ -4,7 +4,12 @@
 
 #### What is this?
 
-Library Detector (Academic Tool), **LD(AT)**, is a Chrome extension which can detect all JavaScript libraries runs behind the web and examine their versions. LD(AT) collects 1250 most popular libraries information from [cdnjs](https://cdnjs.com/). The complete library list can be found [here](https://github.com/aaronxyliu/PTV/blob/main/LIBLIST.md). The library detection ability has academic research support. More information please refer to the ASE 2023 paper [PTdetector: An Automated JavaScript Front-end Library Detector](https://www.researchgate.net/publication/373638073_PTDETECTOR_An_Automated_JavaScript_Front-end_Library_Detector).
+Library Detector (Academic Tool), **LD(AT)**, is a Chrome extension which can detect all JavaScript libraries runs behind the web and examine their versions. LD(AT) collects 1250 most popular libraries information from [cdnjs](https://cdnjs.com/). The complete library list can be found [here](https://github.com/aaronxyliu/PTV/blob/main/LIBLIST.md). The library detection ability has academic research support. More information please refer to the following papers:
+- ASE'23: [PTdetector: An Automated JavaScript Front-end Library Detector](https://www.researchgate.net/publication/373638073_PTDETECTOR_An_Automated_JavaScript_Front-end_Library_Detector).
+- ICSE'26: [PTV: Scalable Version Detection of Web Libraries and its Security Application](https://aaronxyliu.github.io/download/ptv-ready.pdf)
+
+#### 🔥 Update News!
+Want to use PTV to detect **bundled** libraries? Try this early-acess project: [aaronxyliu/PTV-bundle](https://github.com/aaronxyliu/PTV-bundle).
 
 #### How does it work?
 
@@ -21,50 +26,100 @@ In the popup, click the "detect" button. The detectioned libraries and correspon
 ![example](img/example.png)
 
 #### How to automate the detection result collection?
-1. Clone this repo
-2. Change the value of variables `AUTO_DETECT` to `true` in the `content_scrtips/detect.js` file.
-``` javascript
+The recommended automation method is to load this repository as an **unpacked Chrome extension** with Puppeteer. Current Chrome/Selenium combinations may not reliably load a packed `PTV.crx`; in our tests, Puppeteer's `enableExtensions` option with pipe transport was the reliable method.
+
+1. Clone this repository.
+
+2. Make sure automatic detection is enabled in `content_scripts/inject.js`:
+
+```javascript
 const AUTO_DETECT = true;
-const AUTO_WAIT_TIME = 5;
+const AUTO_WAIT_TIME = 4; // seconds
 ```
-Under such setting, this tool will send a signal to start the detection after 5 seconds when web page is loaded. The detection time and result will be stored in two created html elements with IDs of `lib-detect-result` and `lib-detect-time`, respectively.  
-4. Open Chrome, navigate to the `chrome://extensions/` site, click the "Pack extension" button to pack this repo, and name it "ldat.crx".
 
-[<img src="img/pack.png" width="500"/>](img/pack.png)
-<!-- ![example](img/pack.png) -->
+With this setting, PTV starts detection automatically after the page loads. The automation result is written into two meta elements:
 
-5. Prepare Selenium and Chrome driver. Detail steps refer to guides in [PTV-gen](https://github.com/aaronxyliu/Anonymous).
-6. Use following python code to open a web page and collect the detection result. Notice that the detection result is stored in JSON format.
+```html
+<meta id="lib-detect-result" content="...">
+<meta id="lib-detect-time" content="...">
+```
 
-``` python
-from selenium.webdriver.chrome.options import Options
-from selenium.webdriver.common.by import By
-from selenium import webdriver
-from selenium.webdriver.support.wait import WebDriverWait
-from selenium.webdriver.support.expected_conditions import presence_of_element_located
-import json
+`lib-detect-result` stores a JSON string, and `lib-detect-time` stores the detection time in milliseconds.
 
-# load this extension to the browser instance
-opt = Options()
-opt.add_extension('ldat.crx')
-driver = webdriver.Chrome(executable_path="chromedriver", options=opt)
+3. Install Puppeteer Core in your automation project:
 
-def retrieveInfo(url):
-    # navigate to the url
-    driver.get(url)    
+```bash
+npm install puppeteer-core
+```
 
-    # wait until content appear in the element with id "lib-detect-result"
-    WebDriverWait(driver, timeout=40).until(presence_of_element_located((By.XPATH, '//meta[@id="lib-detect-result" and @content]')))
-    
-    # read detection result and detection time
-    result_str = driver.find_element(By.XPATH, '//*[@id="lib-detect-result"]').get_attribute("content")
-    detect_time = driver.find_element(By.XPATH, '//*[@id="lib-detect-time"]').get_attribute("content")
-    return json.loads(result_str), detect_time
+4. Use the unpacked PTV directory directly:
+
+```javascript
+const path = require("path");
+const puppeteer = require("puppeteer-core");
+
+const chromePath = "/Applications/Google Chrome.app/Contents/MacOS/Google Chrome";
+const ptvDir = path.resolve("PTV"); // this repository's root directory
+
+async function retrieveInfo(url) {
+  const browser = await puppeteer.launch({
+    executablePath: chromePath,
+    headless: false,
+    pipe: true,
+    enableExtensions: [ptvDir],
+    args: [
+      "--no-first-run",
+      "--no-default-browser-check",
+    ],
+  });
+
+  try {
+    const page = await browser.newPage();
+    await page.goto(url, {
+      waitUntil: "domcontentloaded",
+      timeout: 40000,
+    });
+
+    await page.waitForFunction(
+      () => {
+        const result = document.getElementById("lib-detect-result");
+        return Boolean(result && result.getAttribute("content"));
+      },
+      { timeout: 40000 },
+    );
+
+    return await page.evaluate(() => {
+      const result = document.getElementById("lib-detect-result");
+      const time = document.getElementById("lib-detect-time");
+      return {
+        detected: JSON.parse(result.getAttribute("content") || "[]"),
+        detectTimeMs: Number(time ? time.getAttribute("content") || 0 : 0),
+      };
+    });
+  } finally {
+    await browser.close();
+  }
+}
+
+retrieveInfo("https://example.com/").then(console.log);
+```
+
+On Linux, `chromePath` is commonly one of:
+
+```text
+/usr/bin/google-chrome
+/usr/bin/chromium
+/usr/bin/chromium-browser
+```
+
+On macOS, it is commonly:
+
+```text
+/Applications/Google Chrome.app/Contents/MacOS/Google Chrome
 ```
 
 #### Contibution
 
 Want to contribute? Feel free to contact **aaronxyliu@gmail.com**.
-
 
 

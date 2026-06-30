@@ -35,10 +35,10 @@
 
     class PropertyRecord {
         // The property path staring from `window`
-        constructor() { 
-            this.path_list = []
-            this.ptr = window
-            this.par_ptrs = []      // Parent pointers
+        constructor(path_list = [], ptr = window, par_ptrs = []) { 
+            this.path_list = [...path_list]
+            this.ptr = ptr
+            this.par_ptrs = [...par_ptrs]      // Parent pointers
         }
 
         copy(PR) {
@@ -140,7 +140,14 @@
             if (this.path_list.length == 0)
                 return 'window'
             
-            return `window.${this.path_list.join('.')}`    
+            return `window${this.path_list.map(v => this.formatPathSegment(v)).join('')}`    
+        }
+
+        formatPathSegment(v) {
+            const text = String(v)
+            if (/^[A-Za-z_$][A-Za-z0-9_$]*$/.test(text))
+                return `.${text}`
+            return `[${JSON.stringify(text)}]`
         }
         
     }
@@ -247,6 +254,10 @@
         }
 
         addLib(libindex, detectLocationRecord) {
+            for (let lib of this.libs) {
+                if (lib.index == libindex && lib.detectLocationRecord && detectLocationRecord && lib.detectLocationRecord.ptr === detectLocationRecord.ptr)
+                    return
+            }
             let lib = new Library(libindex, detectLocationRecord)
             this.libs.push(lib)
         }
@@ -278,8 +289,154 @@
             }
         }
 
+        featureExistsAt(libInfo, pr) {
+            if (!libInfo['feature1'] || libInfo['feature1'].length == 0 || libInfo['feature1'][0].length == 0) {
+                // The feature field is empty
+                return false
+            }
+
+            let j = 0
+            while (true) {
+                j += 1
+                let featureName = `feature${j}`
+                if (! libInfo.hasOwnProperty(featureName)) {
+                    break
+                }
+
+                let properties = libInfo[featureName]
+                let feature_hold = true
+                for (let property of properties) {
+                    let _pr = new PropertyRecord()
+                    _pr.copy(pr)
+                    for (let v of property) {
+                        if (!_pr.grow(v)){
+                            feature_hold = false
+                            break
+                        }
+                    }
+                    if (_pr.ptr === undefined) feature_hold = false
+
+                    if (!feature_hold) break
+                }
+                if (feature_hold) {
+                    return true
+                }
+            }
+
+            return false
+        }
+
+        featureRootAliases(libInfo) {
+            const aliases = []
+            let j = 0
+            while (true) {
+                j += 1
+                let featureName = `feature${j}`
+                if (! libInfo.hasOwnProperty(featureName)) {
+                    break
+                }
+
+                for (let property of libInfo[featureName]) {
+                    if (property.length > 0 && !aliases.includes(property[0]))
+                        aliases.push(property[0])
+                }
+            }
+            return aliases
+        }
+
+        normalizeName(text) {
+            return String(text || '').toLowerCase().replace(/[^a-z0-9]/g, '')
+        }
+
+        moduleIdHasName(moduleId) {
+            return /[A-Za-z]/.test(String(moduleId))
+        }
+
+        plausibleNamesForLibrary(libInfo, aliases) {
+            const names = []
+            const addName = (value) => {
+                const normalized = this.normalizeName(value)
+                if (normalized.length >= 3 && !names.includes(normalized))
+                    names.push(normalized)
+            }
+
+            addName(libInfo.libname)
+            addName(libInfo.versionfile ? libInfo.versionfile.replace(/\.json$/i, '') : '')
+
+            if (libInfo.url) {
+                const parts = String(libInfo.url).split(/[/?#]/)[0].split('/')
+                addName(parts[parts.length - 1])
+            }
+
+            return names
+        }
+
+        isPlausibleVarStorageModuleMatch(moduleId, libInfo, aliases) {
+            if (!this.moduleIdHasName(moduleId))
+                return true
+
+            const moduleName = this.normalizeName(moduleId)
+            const names = this.plausibleNamesForLibrary(libInfo, aliases)
+            if (names.length == 0)
+                return false
+
+            return names.some(name => moduleName.includes(name) || name.includes(moduleName))
+        }
+
+        createVarStorageAliasRecord(moduleId, moduleExports, aliases) {
+            const aliasRoot = {}
+            for (let alias of aliases) {
+                aliasRoot[alias] = moduleExports
+            }
+            return new PropertyRecord(['varStorage', 'modules', moduleId], aliasRoot, [window])
+        }
+
+        varStorageExportCandidates(moduleExports) {
+            const candidates = [moduleExports]
+            if (
+                moduleExports &&
+                (typeof moduleExports == 'object' || typeof moduleExports == 'function') &&
+                moduleExports.default &&
+                moduleExports.default !== moduleExports &&
+                (typeof moduleExports.default == 'object' || typeof moduleExports.default == 'function')
+            ) {
+                candidates.push(moduleExports.default)
+            }
+            return candidates
+        }
+
+        findVarStorageLibs() {
+            const storage = window.varStorage
+            const modules = storage && storage.modules
+            if (!modules || (typeof modules != 'object' && typeof modules != 'function'))
+                return
+
+            for (let [moduleId, moduleExports] of Object.entries(modules)) {
+                for (let exportCandidate of this.varStorageExportCandidates(moduleExports)) {
+                    if (!exportCandidate || (typeof exportCandidate != 'object' && typeof exportCandidate != 'function'))
+                        continue
+
+                    for (let i in this.libInfoList) {
+                        let libInfo = this.libInfoList[i]
+                        const aliases = this.featureRootAliases(libInfo)
+                        if (aliases.length == 0)
+                            continue
+                        if (!this.isPlausibleVarStorageModuleMatch(moduleId, libInfo, aliases))
+                            continue
+
+                        const pr = this.createVarStorageAliasRecord(moduleId, exportCandidate, aliases)
+                        if (this.featureExistsAt(libInfo, pr)) {
+                            this.addLib(i, pr)
+                        }
+                    }
+                }
+            }
+        }
+
         findLibs(blacklist, depth_limit=3, size_limit=10000) {
             let visited_vertex_num = 1
+
+            this.findVarStorageLibs()
 
             // Stop the program after 5 seconds
             let timeout = false
@@ -302,43 +459,7 @@
                 let children = pr.getAttr();
                 for (let i in this.libInfoList) {
                     let libInfo = this.libInfoList[i]
-                    let lib_exist = false
-                    let j = 0
-
-                    if (!libInfo['feature1'] || libInfo['feature1'].length == 0 || libInfo['feature1'][0].length == 0) {
-                        // The feature field is empty
-                        continue
-                    }
-                        
-                    while (true) {
-                        j += 1
-                        let featureName = `feature${j}`
-                        if (! libInfo.hasOwnProperty(featureName)) {
-                            break
-                        }
-                        
-                        let properties = libInfo[featureName]
-                        let feature_hold = true
-                        for (let property of properties) {
-                            let _pr = new PropertyRecord()
-                            _pr.copy(pr)
-                            for (let v of property) {  
-                                if (!_pr.grow(v)){
-                                    feature_hold = false
-                                    break
-                                }
-                            }
-                            if (_pr.ptr === undefined) feature_hold = false
-            
-                            if (!feature_hold) break
-                        }
-                        if (feature_hold) {
-                            lib_exist = true
-                            break
-                        }
-                    }
-
-                    if (lib_exist) {
+                    if (this.featureExistsAt(libInfo, pr)) {
                         this.addLib(i, pr)
                     }
                 }
@@ -1788,4 +1909,3 @@
 
     }
 })();
-
